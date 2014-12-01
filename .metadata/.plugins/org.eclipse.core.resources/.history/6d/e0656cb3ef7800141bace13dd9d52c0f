@@ -44,14 +44,6 @@ bookStore.config(function($stateProvider, $urlRouterProvider) {
                 controller: "StoreController"
             }
         }
-	}).state('about', {
-		url : "/about",
-		views: {
-//            "menu": {},
-            "content": {
-                templateUrl: "store/about"
-            }
-        }
 	});
 });
 
@@ -65,10 +57,6 @@ bookStore.controller('StoreController', [ '$scope', '$location',
 			
 			$scope.home = function() {
 				$location.path("");
-			}
-			
-			$scope.about = function() {
-				$location.path("about");
 			}
 		} ]);
 

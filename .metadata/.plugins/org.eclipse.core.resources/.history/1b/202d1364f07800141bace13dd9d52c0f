@@ -47,7 +47,7 @@ bookStore.config(function($stateProvider, $urlRouterProvider) {
 	}).state('about', {
 		url : "/about",
 		views: {
-//            "menu": {},
+            "menu": {},
             "content": {
                 templateUrl: "store/about"
             }
