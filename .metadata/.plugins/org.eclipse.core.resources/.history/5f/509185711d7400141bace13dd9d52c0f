@@ -1,0 +1,83 @@
+'use strict';
+
+angular.module('bookStore.controllers', []).controller('StoreController',
+		[ '$scope', '$location', function($scope, $location) {
+			$scope.user = "Interesting Person";
+
+			$scope.inventory = function() {
+				$location.path("inventory");
+			}
+
+		} ]).controller(
+		'InventoryController',
+		[
+				'$scope',
+				'$location',
+				'Inventory',
+				'ngTableParams',
+				'$filter',
+				'InventoryContext',
+				function($scope, $location, Inventory, ngTableParams, $filter, InventoryContext) {
+					Inventory.list(function(data) {
+						$scope.books = data;
+						InventoryContext.set(data);
+					});
+					$scope.home = function() {
+						$location.path("");
+					}
+					$scope.tableParams = new ngTableParams({
+						page : 1, // show first page
+						count : 10, // count per page
+						sorting : {
+							title : 'desc', // initial sorting
+							author : 'desc'
+						}
+					}, {
+						total : InventoryContext.get().length, // length of data
+						getData : function($defer, params) {
+							// use build-in angular filter
+							console.log("Inv get: " + InventoryContext.get());
+							var data = InventoryContext.get();
+							var orderedData = params.sorting() ? $filter(
+									'orderBy')(data, params.orderBy()) : data;
+
+							$scope.books = orderedData;
+//							$defer.resolve(orderedData);
+						}
+					});
+				} ]);
+
+angular.module(
+		'bookStore',
+		[ 'ngRoute', 'bookStore.services', 'bookStore.controllers',
+				'ngResource', 'ngTable' ]).config(
+		[ '$routeProvider', function($routeProvider) {
+			$routeProvider.when('/inventory', {
+				templateUrl : 'inventory/inventoryFragment',
+				controller : 'InventoryController'
+			});
+			$routeProvider.otherwise({
+				templateUrl : 'store/welcome',
+				controller : 'StoreController'
+			});
+		} ]);
+
+/* Services */
+var services = angular.module('bookStore.services', [ 'ngResource' ]);
+
+services.factory('Inventory', [ '$resource', function($resource) {
+	return $resource('inventory/list', {}, {
+		list : {
+			method : 'GET',
+			isArray : true
+		}
+	});
+} ]).factory('InventoryContext',[function(){
+	this.data = [];
+	this.set = function(newData){
+		this.data = newData;
+	}
+	this.get = function(){
+		return this.data;
+	}
+}]);

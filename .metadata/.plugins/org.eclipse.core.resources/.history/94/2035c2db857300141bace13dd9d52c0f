@@ -1,0 +1,25 @@
+'use strict';
+
+angular.module('bookStore.controllers', [])
+.controller('StoreController', ['$scope','$location', function($scope, $location) {
+	$scope.user = "Interesting Person";
+	
+	$scope.inventory() = function (){
+		$location.url="inventory";
+	}
+}]);
+
+angular.module('bookStore', [ 'ngRoute', 'bookStore.services','bookStore.controllers' ]).config(
+		[ '$routeProvider', function($routeProvider) {
+			$routeProvider.when('inventory',{
+				templateURL : '/inventory',
+				controller: 'InventoryController'
+			});
+			$routeProvider.otherwise({
+				templateUrl : 'store/welcome',
+				controller: 'StoreController'
+			});
+		} ]);
+
+/* Services */
+angular.module('bookStore.services', []).value('version', '0.1');

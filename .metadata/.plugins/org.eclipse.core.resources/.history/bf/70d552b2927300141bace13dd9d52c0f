@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html ng-app="bookStore">
+<head>
+<asset:javascript src="angular.js" />
+<asset:javascript src="angular-route.js" />
+<asset:javascript src="angular-resource.js" />
+<asset:javascript src="application.js" />
+<asset:stylesheet href="application.css" />
+</head>
+<body>
+	<button ng-click="home()">Inventory List</button>
+	<button ng-click="inventory()">Inventory List</button>
+	<div ng-view></div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+'use strict';
+
+angular.module('bookStore.controllers', [])
+.controller('StoreController', ['$scope','$location', function($scope, $location) {
+	$scope.user = "Interesting Person";
+	
+	$scope.inventory = function (){
+		$location.path("inventory");
+	}
+	
+}]).controller('InventoryController', ['$scope','$location','Inventory', function($scope, $location,Inventory) {
+	Inventory.list(function (data){
+		$scope.books = data;
+	});
+	
+	$scope.home = function (){
+		$location.path("");
+	}
+}]);
+
+angular.module('bookStore', [ 'ngRoute','bookStore.services','bookStore.controllers','ngResource' ,'ngTable']).config(
+		[ '$routeProvider', function($routeProvider) {
+			$routeProvider.when('/inventory',{
+				templateUrl : 'inventory/inventoryFragment',
+				controller: 'InventoryController'
+			});
+			$routeProvider.otherwise({
+				templateUrl : 'store/welcome',
+				controller: 'StoreController'
+			});
+		} ]);
+
+/* Services */
+var services = angular.module('bookStore.services', ['ngResource']);
+
+services.factory('Inventory', ['$resource', function ($resource){
+	return $resource('inventory/list',{},{
+		list: {
+			method: 'GET',
+			isArray: true
+		}
+	});
+}]);

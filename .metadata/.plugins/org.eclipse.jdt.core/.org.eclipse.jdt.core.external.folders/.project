@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>.org.eclipse.jdt.core.external.folders</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+	</buildSpec>
+	<natures>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>.link0</name>
+			<type>2</type>
+			<location>/Users/nicholascoats/Documents/ggts-bundle/ggts-3.6.2.RELEASE/plugins/org.grails.ide.eclipse.resources_3.6.2.201410090838-RELEASE/dsl-support</location>
+		</link>
+		<link>
+			<name>.link1</name>
+			<type>2</type>
+			<location>/Users/nicholascoats/Documents/ggts-bundle/grails-2.4.3/scripts</location>
+		</link>
+		<link>
+			<name>.link2</name>
+			<type>2</type>
+			<location>/Users/nicholascoats/Documents/TechCon/BookStore/target/work/plugin-classes</location>
+		</link>
+		<link>
+			<name>.link3</name>
+			<type>2</type>
+			<location>/Users/nicholascoats/.groovy/greclipse/global_dsld_support</location>
+		</link>
+		<link>
+			<name>.link4</name>
+			<type>2</type>
+			<location>/Users/nicholascoats/Documents/ggts-bundle/ggts-3.6.2.RELEASE/plugins/org.codehaus.groovy_2.3.6.xx-201410031620-e44/plugin_dsld_support</location>
+		</link>
+	</linkedResources>
+</projectDescription>

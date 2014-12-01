@@ -1,0 +1,14 @@
+package bookstore
+
+import grails.converters.JSON
+
+class InventoryController {
+
+    def index() { }
+	
+	def list() {
+		def books = ["The Magus","Society of Mind","Dune"]
+		
+		render books as JSON
+	}
+}

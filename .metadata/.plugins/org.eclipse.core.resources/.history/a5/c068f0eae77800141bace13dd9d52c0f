@@ -1,0 +1,124 @@
+'use strict';
+/* App Declaration and Config */
+var bookStore = angular.module('bookStore', [ 'ngRoute', 'bookStore.services',
+		'ngResource', 'ngTable', 'ui.router' ]);
+
+// bookStore.config(
+// [ '$routeProvider', function($routeProvider) {
+// $routeProvider.when('/inventory', {
+// templateUrl : 'inventory/inventoryFragment',
+// controller : 'InventoryController'
+// });
+// $routeProvider.otherwise({
+// templateUrl : 'store/welcome',
+// controller : 'StoreController'
+// });
+// } ]);
+
+bookStore.config(function($stateProvider, $urlRouterProvider) {
+	// For any unmatched url, redirect to /state1
+	$urlRouterProvider.otherwise("/welcome");
+	
+	// Now set up the states
+	$stateProvider.state('inventory', {
+//		url : "/inventory",
+		views: {
+            "menu": {
+                template: "<button>store</button>"
+            },
+            "content": {
+                templateUrl: "inventory/inventoryFragment",
+                controller: "InventoryController"
+            }
+        }
+//		templateUrl : 'inventory/inventoryFragment',
+//		controller : 'InventoryController'
+	}).state('/welcome', {
+//		url : "/store",
+		views: {
+            "menu": {
+                template: "<button>welcome store</button>"
+            },
+            "content": {
+                templateUrl: "store/welcome",
+                controller: "StoreController"
+            }
+//    		templateUrl : 'store/welcome',
+//    		controller : 'StoreController'
+        }
+	});
+});
+
+bookStore.controller('StoreController', [ '$scope', '$location',
+		function($scope, $location) {
+			$scope.user = "Interesting Person";
+
+			$scope.inventory = function() {
+				$location.path("inventory");
+			}
+
+		} ]);
+
+bookStore.controller('InventoryController', [
+		'$scope',
+		'$location',
+		'Inventory',
+		'ngTableParams',
+		'$filter',
+		'InventoryContext',
+		function($scope, $location, Inventory, ngTableParams, $filter,
+				InventoryContext) {
+			Inventory.list(function(data) {
+				$scope.books = data;
+				InventoryContext.set(data);
+			});
+			$scope.home = function() {
+				$location.path("");
+			}
+
+			$scope.tableParams = new ngTableParams({
+				page : 1, // show first page
+				count : 10, // count per page
+				sorting : {
+					title : 'desc', // initial sorting
+					author : 'desc'
+				}
+			}, {
+				counts : [],
+				getData : function($defer, params) {
+					// use build-in angular filter
+					var data = InventoryContext.get();
+					var orderedData = params.sorting() ? $filter('orderBy')(
+							data, params.orderBy()) : data;
+
+					$scope.books = orderedData;
+					// $defer.resolve(orderedData);
+				}
+			});
+		} ]);
+
+/* Services */
+var services = angular.module('bookStore.services', [ 'ngResource' ]);
+
+services.factory('Inventory', [ '$resource', function($resource) {
+	return $resource('inventory/list', {}, {
+		list : {
+			method : 'GET',
+			isArray : true
+		}
+	});
+} ]);
+
+services.factory('InventoryContext', [ function() {
+	var data = [];
+	var set = function(newData) {
+		this.data = newData;
+	}
+	var get = function() {
+		return this.data;
+	}
+	return {
+		set : set,
+		get : get
+	}
+} ]);

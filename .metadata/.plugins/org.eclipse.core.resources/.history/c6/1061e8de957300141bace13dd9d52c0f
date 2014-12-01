@@ -1,0 +1,14 @@
+<div>
+	<button ng-click="home()">Home</button>
+</div>
+<table ng-table>
+	<thead>Books</thead>
+	<tr>
+		<th>Title</th>
+		<th>Author</th>
+	</tr>
+	<tr ng-repeat="book in books">
+		<td>{{book.title}}</td>
+		<td>{{book.author}}</td>
+	</tr>
+</table>

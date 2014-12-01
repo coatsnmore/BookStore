@@ -1,0 +1,9 @@
+package bookstore
+
+class BookDTO {
+	def title
+	
+	BookDTO(){
+		
+	}
+}

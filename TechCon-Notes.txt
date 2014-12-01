@@ -1,0 +1,7 @@
+TechCon notes
+
+- Try to create some sort of Jasmine test bed beforehand
+- Do we use personal or NW computers? -- will shape tools we talk about
+- host code on github to share
+- how to do Jasmine with plain Grails build?
+	- npm?

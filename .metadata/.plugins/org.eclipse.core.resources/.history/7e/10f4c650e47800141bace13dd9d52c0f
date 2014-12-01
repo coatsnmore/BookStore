@@ -1,0 +1,7 @@
+package bookstore
+
+class StoreController {
+
+    def welcome(){render  view: 'welcome'}
+	def storeFront(){}
+}

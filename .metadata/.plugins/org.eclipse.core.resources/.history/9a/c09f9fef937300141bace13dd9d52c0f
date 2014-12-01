@@ -1,0 +1,4 @@
+<section>
+	<button ng-click="inventory()">Inventory List</button>
+		Welcome {{user}}!
+</section>

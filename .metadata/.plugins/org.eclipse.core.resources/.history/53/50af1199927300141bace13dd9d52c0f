@@ -1,0 +1,7 @@
+<section>
+	Welcome {{user}}!
+	<div>
+<%--		<g:link controller="inventory" action="list">Inventory List</g:link>--%>
+	<button ng-click="inventory()">Inventory List</button>
+	</div>
+</section>

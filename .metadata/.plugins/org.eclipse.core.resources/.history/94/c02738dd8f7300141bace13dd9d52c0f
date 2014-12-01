@@ -1,0 +1,17 @@
+package bookstore
+
+import grails.converters.JSON
+
+class InventoryController {
+
+	def inventoryFragment = {render view: 'inventoryFragment'}
+
+	def list() {
+		def books = [
+			title:"The Magus",
+			title:"Society of Mind",
+			"":"Dune"
+		]
+		render books as JSON
+	}
+}

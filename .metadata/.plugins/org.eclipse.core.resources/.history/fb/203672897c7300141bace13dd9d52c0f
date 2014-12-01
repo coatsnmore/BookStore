@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html ng-app="bookStore">
+	<head>
+		<asset:javascript src="application.js"/>
+	<asset:stylesheet href="application.css"/>
+	</head>
+	<body>
+		<div ng-view></div>
+	</body>
+</html>

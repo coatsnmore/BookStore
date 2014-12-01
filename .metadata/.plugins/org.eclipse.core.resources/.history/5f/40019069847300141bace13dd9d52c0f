@@ -1,0 +1,3 @@
+Welcome!
+
+<g:link controller="inventory" action="list">Inventory List</g:link>

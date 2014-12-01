@@ -1,0 +1,16 @@
+'use strict';
+
+angular.module('bookStore', [ 'ngRoute', 'bookStore.services' ]).config(
+		[ '$routeProvider', function($routeProvider) {
+			// $routeProvider.when('/view1', {templateUrl:
+			// 'partials/partial1.html', controller: 'MyCtrl1'})
+			$routeProvider.otherwise({
+				redirectTo : 'inventory/list'
+			});
+			$routeProvider.otherwise({
+				htmlTemplate : 'store/showRoom'
+			});
+		} ]);
+
+/* Services */
+angular.module('bookStore.services', []).value('version', '0.1');

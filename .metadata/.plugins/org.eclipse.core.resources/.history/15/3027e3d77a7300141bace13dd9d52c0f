@@ -1,0 +1,6 @@
+package com.coatsn
+
+class InventoryController {
+
+    def index() { }
+}

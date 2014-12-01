@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="bookStore">
+<head>
+<asset:javascript src="angular.js" />
+<asset:javascript src="angular-route.js" />
+<asset:javascript src="angular-resource.js" />
+<asset:javascript src="ng-table.js" />
+<asset:javascript src="application.js" />
+<asset:javascript src="angular-ui-router.js"/>
+
+<%--<asset:stylesheet href="application.css" />--%>
+<%--<asset:stylesheet href="ng-table.css" />--%>
+
+<link data-require="ng-table@*" data-semver="0.3.1" rel="stylesheet"
+	href="http://bazalt-cms.com/assets/ng-table/0.3.1/ng-table.css" />
+<link data-require="bootstrap-css@*" data-semver="3.0.0"
+	rel="stylesheet"
+	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+
+</head>
+<body>
+	<div>
+		<div ng-view></div>
+	</div>
+</body>
+</html>

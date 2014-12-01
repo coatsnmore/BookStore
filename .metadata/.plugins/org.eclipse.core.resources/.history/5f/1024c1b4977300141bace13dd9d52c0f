@@ -1,0 +1,18 @@
+<div>
+	<button ng-click="home()">Home</button>
+</div>
+
+<div>
+<p><strong>Sorting:</strong> {{tableParams.sorting()|json}}
+</div>
+<table ng-table="tableParams">
+	<thead>Books</thead>
+	<tr>
+		<th>Title</th>
+		<th>Author</th>
+	</tr>
+	<tr ng-repeat="book in books">
+		<td sortable="'book.title'">{{book.title}}</td>
+		<td sortable="'book.author'">{{book.author}}</td>
+	</tr>
+</table>
